@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>
+            {{counter}}
+        </h2>
+        <button @click="plus" style="width: 100px;height:20px;">+</button>
+        <button @click="sub" style="width: 100px;height:20px;">-</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message',
+                counter: 100
+            },
+            methods: {
+                plus() {
+                    this.counter++;
+                },
+                sub() {
+                    this.counter--;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

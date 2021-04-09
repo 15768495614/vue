@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" :value="message" @input="valueChange">
+        <span>
+            {{message}}
+        </span>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message'
+            },
+            methods: {
+                valueChange(e) {
+                    this.message = e.target.value;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

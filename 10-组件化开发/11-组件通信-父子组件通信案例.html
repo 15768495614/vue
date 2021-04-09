@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cpn :number1="num1" :number2="num2" @changecnum1="changenum1" @changecnum2="changenum2"></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <h2>{{number1}}</h2>
+            <input type="text" v-model="cnum1">
+            <h2>{{number2}}</h2>
+            <input type="text" v-model="cnum2">
+        </div>
+    </template>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                num1: 1,
+                num2: 0
+            },
+            methods: {
+                changenum1(num1) {
+                    this.num1 = parseInt(num1);
+                },
+                changenum2(num2) {
+                    this.num2 = parseInt(num2);
+                }
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    props: {
+                        number1: Number,
+                        number2: Number
+                    },
+                    data() {
+                        return {
+                            cnum1: this.number1,
+                            cnum2: this.number2
+                        }
+                    },
+                    watch: {
+                        cnum1(a, b) {
+                            this.$emit('changecnum1', a);
+                            this.cnum2 = parseInt(a) * 100;
+                        },
+                        cnum2(a, b) {
+                            this.$emit('changecnum2', a);
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

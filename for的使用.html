@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app"><span>
+            {{message}}
+        </span>
+        <button @click="addItem">添加数据</button>
+        <ul>
+            <li v-for="item in list">{{item.text}}</li>
+        </ul>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message',
+                list: [{ id: 1, text: 'hah' }, { id: 2, text: 'heh' }, { id: 3, text: 'xixi' }]
+            },
+            methods: {
+                addItem() {
+                    console.log('aaa');
+                    this.list.push({ id: 4, text: 'ss' });
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

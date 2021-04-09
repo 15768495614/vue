@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <span>
+            {{message}}
+        </span>
+        <com1 @func="changeMsg" :parentmsg="message"></com1>
+    </div>
+    <template id="tmp1">
+        <div>
+            <h1>这是子元素 --- {{ parentmsg }}</h1>
+            <input type="button" value="向父组件传值" @click="sendMsg" />
+        </div>
+    </template>
+    <script>
+        var com1 = {
+            template: '#tmp1',
+            data() {
+                return {
+                    msg: '做一个孝顺的孩子'
+                }
+            },
+            props: ['parentmsg'],
+            methods: {
+                sendMsg() {
+                    this.$emit('func', this.msg);
+                }
+            }
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '爸爸给孩子的钱'
+            },
+            methods: {
+                changeMsg(data) {
+                    this.message = data;
+                }
+            },
+            components: {
+                com1
+            }
+        })
+        var arr = new Array(10000);
+        arr[0] = 0;
+        console.log(arr);
+    </script>
+</body>
+
+</html>

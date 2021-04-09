@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <button @click="btnClick(1)">按钮1</button>
+        <button @click="btnClick(2)">按钮2</button>
+        <button @click="btnClick(3)">按钮3</button>
+        <button @click="btnClick(4)">按钮4</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message'
+            },
+            methods: {
+                btnClick(a) {
+                    console.log(a);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

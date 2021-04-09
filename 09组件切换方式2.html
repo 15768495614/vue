@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(150px);
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"><span>
+            {{message}}
+        </span>
+        <button @click="gotoLogin">登录</button>
+        <button @click="gotoRegister">注册</button>
+        <!-- 占位符 :is展示属性的名称-->
+        <transition mode="out-in">
+            <component :is="comName">
+
+            </component>
+        </transition>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message',
+                comName: 'login'
+            },
+            methods: {
+                gotoLogin() {
+                    this.comName = 'login';
+                },
+                gotoRegister() {
+                    this.comName = 'register';
+                }
+            },
+            components: {
+                login: {
+                    template: '<h1>这是登录组件</h1>'
+                },
+                register: {
+                    template: '<h1>这是注册组件</h1>'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

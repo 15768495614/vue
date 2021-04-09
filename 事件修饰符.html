@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .inner {
+            height: 150px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        {{message}}
+        <!-- 使用.self只会触发当前的事件 -->
+        <div class="inner" @click.self="divHandler">
+            <!-- 事件.stop 阻止冒泡 -->
+            <!-- <input type="button" value="戳他" @click.stop="btnHandler"> -->
+            <!-- 使用.prevent 阻止默认行为 -->
+            <!-- <a href="http://wwww.baidu.com" @click.prevent="aHandler">去百度</a> -->
+
+            <input type="button" value="戳他" @click.once="btnHandler">
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '这是一个message'
+            },
+            methods: {
+                divHandler: () => { console.log('div 点击事件'); },
+                btnHandler: () => { console.log('btn 点击事件'); },
+                aHandler: () => { alert(11); }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"><span v-cloak>
+            {{message}}
+        </span>
+    </div>
+    <script>
+        setTimeout(() => {
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    message: '我是一个message'
+                },
+                methods: {}
+            })
+        }, 1000);
+
+    </script>
+</body>
+
+</html>

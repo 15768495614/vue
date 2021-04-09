@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <span>
+            {{message}}
+        </span>
+        <cpn></cpn>
+        <cpn><span>哈哈哈</span></cpn>
+        <cpn><span>呵呵呵</span></cpn>
+        <cpn><span>呵呵呵</span></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <span>我是组件，哈哈哈</span>
+            <slot><button>按钮</button></slot>
+        </div>
+    </template>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message'
+            },
+            methods: {},
+            components: {
+                cpn: {
+                    template: '#cpn'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

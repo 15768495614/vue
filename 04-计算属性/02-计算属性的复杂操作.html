@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app"><span>
+            {{message}}
+        </span>
+        <h2>总价格 {{books.reduce((pre, curr, index) => pre + curr.price, 0)}}</h2>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message',
+                books: [
+                    { id: '112', name: '计算机1', price: 110 },
+                    { id: '112', name: '计算机1', price: 110 },
+                    { id: '112', name: '计算机1', price: 110 },
+                ]
+            },
+            methods: {},
+            computed: {
+                totalPrice: function () {
+                    return this.books.reduce((pre, curr, index) => pre + curr.price, 0);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

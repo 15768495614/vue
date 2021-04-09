@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <span>
+            {{message}}
+        </span>
+        <cpn></cpn>
+        <cpn></cpn>
+        <cpn ref="aaa" :text="message"></cpn>
+        <button @click="btnClick">获取子组件对象</button>
+    </div>
+    <template id="cpn">
+        <div>我是子组件</div>
+    </template>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message'
+            },
+            methods: {
+                btnClick() {
+                    console.log(this.$children);
+                    console.log(this.$refs.aaa);
+                    for (const obj of this.$children) {
+                        console.log(obj.name);
+                        console.log(obj.text);
+                    }
+                    this.$children[0].showMessage();
+                }
+            },
+            components: {
+                'cpn': {
+                    template: '#cpn',
+                    props: {
+                        text: {
+                            type: String,
+                            default: '我是文本'
+                        }
+                    },
+                    data() {
+                        return { name: '我是子组件的name' }
+                    },
+                    methods: {
+                        showMessage() {
+                            console.log(1111);
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"><span>
+            {{message}}
+        </span>
+        <com1 :msg="message" @func="show"></com1>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message,父組件的數據'
+            },
+            methods: {
+                show() {
+                    console.log(111);
+                }
+            },
+            components: {
+                com1: {
+                    template: '<h2>這是子組件,{{msg}},{{title}}<input type="button" @click="tiggerClick" value="點擊按鈕"></h2>',
+                    props: ['msg'],
+                    methods: {
+                        tiggerClick() {
+                            this.$emit("func");
+                        }
+                    },
+                    data: function () {
+                        return { title: '標題' };
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

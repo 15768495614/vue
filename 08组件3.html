@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <span>
+            {{message}}
+        </span>
+        <mycom3></mycom3>
+    </div>
+    <div id="app1">
+        <login></login>
+    </div>
+    <template id="tmp1">
+        <h1>html组件{{id}}</h1>
+    </template>
+    <template id="tmp2">
+        <h1>这是私有组件渲染出来的</h1>
+    </template>
+    <script>
+        Vue.component('mycom3', {
+            template: '#tmp1',
+            data: function () {
+                return { id: '111' };
+            }
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message'
+            },
+            methods: {}
+        });
+
+        var vm = new Vue({
+            el: '#app1',
+            data: {
+                message: '我是一个message'
+            },
+            methods: {},
+            components: {
+                login: {
+                    template: '#tmp2'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

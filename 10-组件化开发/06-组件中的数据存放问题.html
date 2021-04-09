@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app"><span>
+            {{message}}
+        </span>
+        <cpn></cpn>
+        <cpn></cpn>
+        <cpn></cpn>
+    </div>
+    <!-- 1. script 要使用类型text/x-template-->
+    <script type="text/x-template" id="cpn">
+    <div>
+        <h2>我是标题</h2>
+        <p>我是内容，哈哈哈</p>
+    </div>
+    </script>
+
+    <!-- 2.template标签 -->
+    <template id="cpn2">
+        <div>
+            <h2>我是标题2---{{msg}}</h2>
+            <p>我是内容2222，哈哈哈</p>
+            <button @click="add">按钮</button>
+        </div>
+    </template>
+
+    <script>
+        //1.注册一个全局组件
+        Vue.component('cpn', {
+            template: '#cpn2', data: function () {
+                return { msg: '111' };
+            }, methods: {
+                add() {
+                    this.msg = '222';
+                }
+            }
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message'
+            },
+            methods: {}
+        })
+    </script>
+</body>
+
+</html>

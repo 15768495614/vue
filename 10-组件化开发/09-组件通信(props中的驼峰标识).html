@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <span>
+            {{message}}
+        </span>
+        <cpn :c-info="info" :child-my-message="message"></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <h2>{{cInfo}}</h2>
+            <h2>{{childMyMessage}}</h2>
+        </div>
+    </template>
+
+    <script>
+        const cpn = {
+            template: '#cpn',
+            props: {
+                cInfo: {
+                    type: Object,
+                    default() {
+                        return {};
+                    }
+                },
+                childMyMessage: String
+            }
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message',
+                info: {
+                    name: 'why',
+                    age: 23,
+                    height: 1.88
+                }
+            },
+            methods: {},
+            components: {
+                cpn
+            }
+        })
+    </script>
+</body>
+
+</html>

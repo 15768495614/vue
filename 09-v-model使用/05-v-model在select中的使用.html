@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- select单选 -->
+        <!-- <select name="abc" id="" v-model="fruit">
+            <option value="苹果">苹果</option>
+            <option value="香蕉">香蕉</option>
+            <option value="梨">梨</option>
+            <option value="桃子">桃子</option>
+        </select>
+        <h2>你的选择是：{{fruit}}</h2> -->
+
+        <select name="abc" id="" v-model="fruits" multiple>
+            <option value="苹果">苹果</option>
+            <option value="香蕉">香蕉</option>
+            <option value="梨">梨</option>
+            <option value="桃子">桃子</option>
+        </select>
+        <h2>你的选择是：{{fruits}}</h2>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message',
+                fruit: '香蕉',
+                fruits: ['苹果', '香蕉']
+            },
+            methods: {}
+        })
+    </script>
+</body>
+
+</html>

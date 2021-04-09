@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <span>
+            {{message}}
+        </span>
+        <input type="text" v-model="id" />
+        <input type="text" v-model="name" @keyup.keyCode.f2="add" />
+        <button @click="add">添加品牌</button>
+        <!-- 所有指令，都以v-开头 -->
+        <input type="text" v-model="keywords" id="search" v-focus>
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>time</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in search(keywords)" :key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.time|dateFormat('yyyy-MM-dd HH:mm:ss')}}</td>
+                    <td><a @click.prevent="del(item.id)">删除</a><button @click="del(item.id)">删除</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="app2">
+        {{dt|dateFormat}}
+        <input type="text" v-fontsize="'yellow'">
+    </div>
+    <script>
+        // 使用Vue.directive定义全局的指令
+        //参数1，指令的名称
+        //参数2,是一个对象，有一些指令相关的函数，在特定阶段，执行
+        Vue.directive('focus', {
+            bind: function () { },
+            inserted: function (el) {
+                el.focus();
+            },
+            updated: function () { }
+        });
+
+        Vue.filter('dateFormat', function (data, formatStr) {
+            var dt = new Date(data);
+            var y = dt.getFullYear();
+            var m = dt.getMonth() + 1;
+            var d = dt.getDate();
+            var hh = dt.getHours();
+            var mm = dt.getMinutes();
+            var ss = dt.getSeconds();
+            return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                keywords: '',
+                message: '我是一个message',
+                list: [{
+                    id: 1,
+                    name: '长安奔奔',
+                    time: new Date()
+                }, {
+                    id: 2,
+                    name: '奔驰',
+                    time: new Date()
+                }, {
+                    id: 3,
+                    name: '奥迪',
+                    time: new Date()
+                }]
+            },
+            methods: {
+                add() {
+                    this.list.push({ id: this.id, name: this.name, time: new Date() });
+                    this.id = this.name = '';
+                },
+                del(id) {
+                    const index = this.list.findIndex(x => x.id == id);
+                    this.list.splice(index, 1);
+                },
+                search(keywords) {
+                    return this.list.filter(x => x.name.includes(keywords));
+                }
+            }
+        })
+
+        var vm2 = new Vue({
+            el: '#app2',
+            data: {
+                dt: new Date()
+            },
+            methods: {
+            },
+            filters: {
+                dateFormat: function (dateStr, pattern = '') {
+                    var dt = new Date(dateStr);
+                    var y = dt.getFullYear();
+                    var m = (dt.getMonth() + 1).toString().padStart(2, '0');
+                    var d = dt.getDate().toString().padStart(2, '0');
+                    var hh = dt.getHours().toString().padStart(2, '0');
+                    var mm = dt.getMinutes().toString().padStart(2, '0');
+                    var ss = dt.getSeconds().toString().padStart(2, '0');
+                    return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+                }
+            },
+            directives: {
+                'fontweight': {
+                    bind: function (el, binding) {
+                        el.style.color = binding.value;
+                    }
+                },
+                'fontsize': function (el, binding) {
+                    el.style.color = binding.value;
+                    el.focus();
+                }
+            }
+
+        })
+
+
+    </script>
+</body>
+
+</html>

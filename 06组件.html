@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-com1></my-com1>
+        <span>
+            {{message}}
+        </span>
+    </div>
+    <script>
+        var com1 = Vue.extend({
+            template: '<h3>这是Vue.extend创建的组件</h3>',
+        });
+
+        Vue.component('myCom1', com1);
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message'
+            },
+            methods: {}
+        })
+    </script>
+</body>
+
+</html>

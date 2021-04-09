@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app" v-if="flag"><span>
+            {{message}}
+        </span></div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message',
+                flag: true
+            },
+            methods: {
+                show() {
+                    console.log('执行了show 方法！');
+                }
+            },
+            beforeCreate() {
+                //data 和 methods 还没有被初始化
+                // onsole.log(this.message);
+                // this.show();
+            },
+            created() {
+                console.log(this.message);
+                this.show();
+            },
+            beforeMount() {//挂载前
+                console.log(document.getElementById('app').innerText);
+            },
+            mounted() {//挂载后
+                console.log(document.getElementById('app').innerText);
+            },
+            beforeUpdate() {//数据修改,页面还没更新
+                console.log('数据更新');
+                console.log(this.message);
+                console.log(document.getElementById('app').innerText);
+            },
+            updated() {//页面更新
+                console.log('页面更新');
+                // console.log(document.getElementById('app').innerText);
+            },
+            beforeDestroy() {
+                alert('子组件销毁前');
+            },
+            destroyed() {
+                alert('销毁完毕');
+            }
+        })
+    </script>
+</body>
+
+</html>

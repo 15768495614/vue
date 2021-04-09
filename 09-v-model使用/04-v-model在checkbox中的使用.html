@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 单选框 -->
+        <!-- <label for="agree">
+            <input type="checkbox" id="agree" v-model="isAgree">同意协议
+        </label>
+        <button :disabled="!isAgree">下一步</button> -->
+        <!-- checkbox多炫酷 -->
+        <input type="checkbox" value="篮球" v-model="aihao">篮球
+        <input type="checkbox" value="足球" v-model="aihao">足球
+        <input type="checkbox" value="乒乓球" v-model="aihao">乒乓球
+        <h2>你的爱好是：{{aihao}}</h2>
+        <label for="" v-for="item in originHobbies">
+            <input type="checkbox" :value="item" v-model="aihao">{{item}}
+        </label>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是一个message',
+                isAgree: false,
+                aihao: ['篮球'],
+                originHobbies: ['篮球', '足球', '乒乓球']
+            },
+            methods: {}
+        })
+    </script>
+</body>
+
+</html>
